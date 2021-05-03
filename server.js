@@ -17,7 +17,7 @@ server.get('/',(req,res)=>{
 });
 
 server.get('/new',(req,res)=>{
-  res.render('./new');
+  res.render('new');
 });
 
 server.post('/new',(req,res)=>{
@@ -26,18 +26,18 @@ server.post('/new',(req,res)=>{
   let newdata;
   let url= `https://www.googleapis.com/books/v1/volumes?q=${name}+intitle`;
   let url1= `https://www.googleapis.com/books/v1/volumes?q=${name}+inauthor`;
-  if(req.query.The_way==='title')
+  if(req.query.The_way ==='title')
   {newdata=url;}
-  else if(req.query.The_way==='author')
+  else if(req.query.The_way ==='author')
   {newdata=url1;}
-  superagent.get(newdata)
+  superagent.get(url)
     .then(bookdata=>{
       let newdata1=bookdata.body.items;
       newdata1.map(val=>{
         let newitem=new Book (val);
         booksarry.push(newitem);
       });
-      res.render('/searches/show',{books:booksarry});
+      res.render('./searches/show',{books:booksarry});
     });
 
 });
@@ -53,7 +53,6 @@ function Book (bookdata){
   this.title=bookdata.volumeInfo.title;
   this.author=bookdata.volumeInfo.authors;
   this.date=bookdata.volumeInfo.publisshedData;
-  this.cover=bookdata.volumeInfo.thumbnai;
+  //this.cover=bookdata.volumeInfo.thumbnai;
   this.description=bookdata.volumeInfo.description;
-
 }
