@@ -9,15 +9,24 @@
 <body>
     <hi> book pages</hi>
     <section>
-<ul>
     <% books.forEach(book=>{ %>
-<li><%= book.title %></li>
-<li><%= book.author %></li>
-<li><%= book.date %></li>
-<li><%= book.cover %></li>
-<li><%= book.description %></li>
+        <div>
+            <img src=<%= book.url %> alt="">
+<li>
+    <%= book.title %>
+</li>
+
+<li>
+    <%= book.author %>
+</li>
+
+<li>
+    <%= book.description %>
+</li>
+
+ </div>
     <%}) %>
-</ul>
+
     </section>
     
 </body>
