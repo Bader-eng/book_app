@@ -20,6 +20,8 @@ server.get('/', getTasks);
 // server.get('/',(req,res)=>{
 //   res.render('index');
 // });
+server.post('/Books',addBookHandler);
+server.get('/Books/:id',detalHandler);
 
 server.get('/new',(req,res)=>{
   res.render('new');
@@ -57,10 +59,28 @@ function getTasks(request, response) {
     });
 }
 
+function detalHandler(req,res){
+  console.log(req.params);
+  let taskId = req.params.id;
+  let SQL = `SELECT * FROM tasks WHERE id=$1;`;
+  let safeValue = [taskId];
+  client.query(SQL,safeValue)
+    .then(result=>{
+    // console.log(result.rows[0]);
+      res.render('./Books/details',{task:result.rows[0]});
+    });
+}
 
 
-
-
+function addBookHandler(req,res){
+  console.log(req.body);
+  let SQL = `INSERT INTO tasks (image,title,author,description) VALUES ($1,$2,$3,$4) RETURNING *;`;
+  let safeValues = [req.body.image,req.body.title,req.body.author,req.body.description];
+  client.query(SQL,safeValues)
+    .then(result=>{
+      res.redirect(`/Books/${result.rows[0].id}`);
+    });
+}
 
 // server.listen(PORT,()=>{
 //   console.log(`listening on PORT ${PORT}`);
@@ -69,7 +89,7 @@ function getTasks(request, response) {
 
 function Book (bookdata){
   //this.url=bookdata.volumeInfo.imageLinks.thumbnai || ;
-  this.url = bookdata.volumeInfo.imageLinks.thumbnail || `https://i.imgur.com/J5LVHEL.jpg`;
+  this.image = bookdata.volumeInfo.imageLinks.thumbnail || `https://i.imgur.com/J5LVHEL.jpg`;
   this.title=bookdata.volumeInfo.title;
   this.author=bookdata.volumeInfo.authors;
   this.description=bookdata.volumeInfo.description;
