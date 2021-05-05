@@ -9,16 +9,38 @@
 <body>
     <hi> book pages</hi>
     <section>
-<ul>
     <% books.forEach(book=>{ %>
-<li><%= book.title %></li>
-<li><%= book.author %></li>
-<li><%= book.date %></li>
-<li><%= book.cover %></li>
-<li><%= book.description %></li>
+        <div>
+            <img src=<%= book.imag %> alt="">
+<li>
+    <%= book.title %>
+</li>
+
+<li>
+    <%= book.author %>
+</li>
+
+<li>
+    <%= book.isbn %>
+</li>
+
+<li>
+    <%= book.description %>
+</li>
+
+<form action='/Books' method="POST">
+    <input name="title" value="<%= book.title %>"  hidden>
+    <input name="author" value="<%= book.author %>"  hidden>
+    <input name="description" value="<%= book.description %>"  hidden>
+    <input name="imag" value="<%= book.imag %>"  hidden>
+    <input name="isbn" value="<%= book.isbn %>"  hidden>
+    <button type="submit">Select This Book</button>
+</form>
+ </div>
     <%}) %>
-</ul>
+
     </section>
+
     
 </body>
 </html>

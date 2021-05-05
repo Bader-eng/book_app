@@ -1,0 +1,46 @@
+*{
+    box-sizing: border-box;
+}
+
+@media  (max-width: 767px){
+    .content{
+        display: grid;
+        grid-template-columns: repeat(1fr, 1fr);
+        grid-auto-rows: minmax(75px, auto);  
+    background-color: white;  }
+
+    body {
+        background-color:white;
+    }
+
+#link {
+    grid-column: span 1;
+    line-height: 75px;
+    text-align: center;
+    margin: 20px;
+    color:silver;
+    background-color:black;
+    border: solid snow;
+   text-decoration: none;
+}
+
+#a{
+text-decoration: none;
+color:crimson;
+border: solid cyan;
+width: 25%;
+}
+
+
+
+section div {
+    grid-column: span 1;
+    line-height: 50px;
+    text-align: center;
+    color:darkred;
+    background-color:lightgreen;
+    margin: 5px;
+    border: solid;
+}
+
+}

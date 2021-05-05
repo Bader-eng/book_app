@@ -5,10 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book_app</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/base.css">
 </head>
-<body>
-    <h1>Hello World</h1>
-    <a href="./new">search</a>
 
+<body class="content">
+ <header id="link">
+    <h1>Book</h1>
+    <a id="a" href="./">home</a>
+    <a id="a" href="./new">search book</a>
+ </header>
+
+    <section>
+        <% tasksResults.forEach(book=>{ %>
+            <div >
+                <img src=<%= book.imag %> alt="">
+    <li>
+        <%= book.title %>
+    </li>
+    
+    <li>
+        <%= book.author %>
+    </li>
+    <li>
+        <%= book.isbn %>
+    </li>
+    
+    <li>
+        <%= book.description %>
+    </li>
+    <a href="/Books/<%=book.id%>">view details</a>
+     </div>
+        <%}) %>
+    </section>
 </body>
 </html>
