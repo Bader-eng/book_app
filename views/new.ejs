@@ -5,20 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book_app</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/base.css">
     
 </head>
-<body>
-    <h1>hi</h1>
-    <a href="./new">search book</a>
-    <a href="./">home</a>
-    <form action="/new" method="POST" >
+<body class="content">
+    <header id="link">
+        <h1>Book</h1>
+        <a id="a" href="./">home</a>
+        <a id="a" href="./new">search book</a>
+     </header>
 
-        <input type="text"  name="book" required>
+    <form action="/new" method="POST" id="H">
+        <label for="">input:</label>
+        <input type="text"  name="book" required><br>
 <label for="">Title</label>
-        <input type="radio"  name="The_way" value="title" placeholder="title" checked required>
+        <input type="radio"  name="The_way" value="title" placeholder="title" checked required><br>
 <label for="">Author</label>
-        <input type="radio"  name="The_way" value="author" placeholder="author" required>
-        <button>Search the Google books API</button>
+        <input type="radio"  name="The_way" value="author" placeholder="author" required><br>
+        <button>Search the Google books API</button><br>
     </form>
 </body>
 </html>

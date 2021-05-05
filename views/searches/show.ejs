@@ -5,9 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/base.css">
 </head>
-<body>
-    <hi> book pages</hi>
+<body class="content">
+    <header id="link">
+        <h1>Book</h1>
+        <a id="a" href="./">home</a>
+        <a id="a" href="./new">search book</a>
+     </header>
+    
     <section>
     <% books.forEach(book=>{ %>
         <div>
