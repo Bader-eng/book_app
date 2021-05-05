@@ -20,6 +20,26 @@
 <li>
     <%= task.description %>
 </li>
+        </div>
 
+        <form action="/deleteTask/<%=task.id%>?_method=delete"  method="POST">
+            <button>Delete Task</button>
+          </form>
+    <button id="updateBtn">Update</button><br>
+    <section id="updateForm">
+        <form action="/updateTask/<%=task.id%>?_method=put" method="POST">
+
+            <input type="text" name="title" value="<%=task.title%>"><br>
+
+            <input type="text" name="author" value="<%=task.author %>"><br>
+
+            <textarea name="description" cols="30" rows="10"><%=task.description %></textarea><br>
+
+            <button type="submit">update Task</button><br>
+
+          </form>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/app.js"></script>
 </body>
 </html>

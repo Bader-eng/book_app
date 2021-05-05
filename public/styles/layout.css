@@ -1,0 +1,29 @@
+@media  (max-width: 767px){
+    .content{
+        display: grid;
+        grid-template-columns: repeat(1fr, 1fr);
+        grid-auto-rows: minmax(75px, auto);    }
+
+#link {
+    grid-column: span 2;
+    line-height: 75px;
+    text-align: center;
+    color: black;
+    background-color:gold;
+}
+
+section{
+    background-color: white;
+}
+
+section div {
+    grid-column: span 2;
+    line-height: 75px;
+    text-align: center;
+    color:gold;
+    margin: 5px;
+    background-color:black;
+    border: gold;
+}
+
+}
