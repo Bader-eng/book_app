@@ -11,13 +11,17 @@
     <section>
     <% books.forEach(book=>{ %>
         <div>
-            <img src=<%= book.image %> alt="">
+            <img src=<%= book.imag %> alt="">
 <li>
     <%= book.title %>
 </li>
 
 <li>
     <%= book.author %>
+</li>
+
+<li>
+    <%= book.isbn %>
 </li>
 
 <li>
@@ -28,7 +32,8 @@
     <input name="title" value="<%= book.title %>"  hidden>
     <input name="author" value="<%= book.author %>"  hidden>
     <input name="description" value="<%= book.description %>"  hidden>
-    <input name="img" value="<%= book.image %>"  hidden>
+    <input name="imag" value="<%= book.imag %>"  hidden>
+    <input name="isbn" value="<%= book.isbn %>"  hidden>
     <button type="submit">Select This Book</button>
 </form>
  </div>

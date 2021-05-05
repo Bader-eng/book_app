@@ -7,25 +7,29 @@
     <title>Book_app</title>
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/base.css">
 </head>
 
 <body class="content">
-    <div id="link">
-    <h1>Hello World</h1>
-    <a href="./new">search book</a>
-    <a href="./">home</a>
-   </div>
+ <header id="link">
+    <h1>Book</h1>
+    <a id="a" href="./">home</a>
+    <a id="a" href="./new">search book</a>
+ </header>
 
     <section>
         <% tasksResults.forEach(book=>{ %>
             <div >
-                <img src=<%= book.image %> alt="">
+                <img src=<%= book.imag %> alt="">
     <li>
         <%= book.title %>
     </li>
     
     <li>
         <%= book.author %>
+    </li>
+    <li>
+        <%= book.isbn %>
     </li>
     
     <li>

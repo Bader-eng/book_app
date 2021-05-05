@@ -46,6 +46,7 @@ server.post('/new',(req,res)=>{
     url = `https://www.googleapis.com/books/v1/volumes?q=${name}+inauthor`;}
   superagent.get(url)
     .then(bookdata=>{
+      //console.log(bookdata);
       let newdata1=bookdata.body.items;
       let books= newdata1.map((val)=>{
         return new Book(val);
@@ -83,19 +84,21 @@ function detalHandler(req,res){
 
 function addBookHandler(req,res){
   console.log(req.body);
-  let SQL = `INSERT INTO tasks (image,title,author,description) VALUES ($1,$2,$3,$4) RETURNING *;`;
-  let safeValues = [req.body.image,req.body.title,req.body.author,req.body.description];
+  let SQL = `INSERT INTO tasks (imag,title,author,isbn,description) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
+  let safeValues = [req.body.imag,req.body.title,req.body.author,req.body.isbn,req.body.description];
   client.query(SQL,safeValues)
     .then(result=>{
+
       res.redirect(`/Books/${result.rows[0].id}`);
     });
 }
 
 function updateBookHandler(req,res){
   // console.log(req.body);
-  let {image,title,author,description} = req.body;
-  let SQL = `UPDATE tasks SET image=$1,title=$2,author=$3,description=$4 WHERE id=$5;`;
-  let safeValues = [image,title,author,description,req.params.id];
+  let {imag,title,author,isbn,description} = req.body;
+  let SQL = `UPDATE tasks SET imag=$1,title=$2,author=$3,isbn=$4,description=$5 WHERE id=$6;`;
+  let safeValues = [imag,title,author,isbn,description,req.params.id];
+  //console.log(safeValues);
   client.query(SQL,safeValues)
     .then(()=>{
       res.redirect(`/Books/${req.params.id}`);
@@ -118,10 +121,15 @@ function deleteBookHandler(req,res){
 
 function Book (bookdata){
   //this.url=bookdata.volumeInfo.imageLinks.thumbnai || ;
-  this.image = bookdata.volumeInfo.imageLinks.thumbnail || `https://i.imgur.com/J5LVHEL.jpg`;
-  this.title=bookdata.volumeInfo.title;
-  this.author=bookdata.volumeInfo.authors;
-  this.description=bookdata.volumeInfo.description;
+  this.imag = bookdata.volumeInfo.imageLinks.thumbnail || 'https://i.imgur.com/J5LVHEL.jpg';
+  this.title=bookdata.volumeInfo.title || 'no data';
+  this.author=bookdata.volumeInfo.authors || 'no data';
+  this.isbn=this.isbn = bookdata.volumeInfo.industryIdentifiers ;
+  if (this.isbn){
+    this.isbn = this.isbn[0].identifier;
+  }else { this.isbn = 'Not available';
+  }
+  this.description=bookdata.volumeInfo.description || 'no data';
 }
 
 client.connect()
